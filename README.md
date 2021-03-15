@@ -13,7 +13,7 @@ Run `go get github.com/USERNAME/THIS_PROJECT`.
 
 ### Author
 
-Brian Mayer ([bleemayer@gmail.com](bleemayer@gmail.com))
+Brian Mayer ([bleemayer@gmail.com](mailto:bleemayer@gmail.com))
 
 
 ### License
