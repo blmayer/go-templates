@@ -2,6 +2,8 @@ package main
 
 import (
 	"os"
+
+	"github.com/blmayer/template/internal/database/mongodb"
 )
 
 const help = `template is a go program template
@@ -12,6 +14,8 @@ Available options:
   --help	show this help
 Examples:
   template --help`
+
+var nosql mongodb.Database
 
 func main() {
 	// Command line arguments parsing
@@ -27,6 +31,13 @@ func main() {
 			println(help)
 			os.Exit(-1)
 		}
+	}
+
+	// Connect to mongodb
+	var err error
+	nosql, err = mongodb.Connect("connString", "myDB")
+	if err != nil {
+		panic("mongodb connection: " + err.Error())
 	}
 
 	println("template finished")
