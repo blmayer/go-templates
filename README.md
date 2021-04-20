@@ -7,6 +7,11 @@
 
 Run `go get github.com/USERNAME/THIS_PROJECT`.
 
+Then you must change some things:
+
+- Change *program.go* to match your program name
+- Change `template` string to your program name in all go files
+
 
 ## Meta
 
