@@ -1,4 +1,4 @@
-# Go template
+# Go templates
 
 > Repo with a template for a go program/module.
 
