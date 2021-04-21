@@ -1,4 +1,4 @@
-module github.com/blmayer/template
+module github.com/blmayer/go-templates
 
 go 1.16
 

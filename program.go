@@ -1,9 +1,10 @@
 package main
 
 import (
+	"net/http"
 	"os"
 
-	"github.com/blmayer/template/internal/database/mongodb"
+	"github.com/blmayer/go-templates/internal/database/mongodb"
 )
 
 const help = `template is a go program template
@@ -33,12 +34,18 @@ func main() {
 		}
 	}
 
+	// Get env variables
+	connString := os.Getenv("CONN_STRING")
+	port := os.Getenv("PORT")
+
 	// Connect to mongodb
 	var err error
-	nosql, err = mongodb.Connect("connString", "myDB")
+	nosql, err = mongodb.Connect(connString, "myDB")
 	if err != nil {
 		panic("mongodb connection: " + err.Error())
 	}
 
-	println("template finished")
+	http.HandleFunc("/index", indexHandler)
+
+	http.ListenAndServe(":"+port, nil)
 }
