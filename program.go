@@ -1,10 +1,10 @@
 package main
 
 import (
+	"embed"
+	"html/template"
 	"net/http"
 	"os"
-
-	"github.com/blmayer/go-templates/internal/database/mongodb"
 )
 
 const help = `template is a go program template
@@ -16,7 +16,12 @@ Available options:
 Examples:
   template --help`
 
-var nosql mongodb.Database
+var (
+	temp *template.Template
+
+	//go:embed web/*
+	pages embed.FS
+)
 
 func main() {
 	// Command line arguments parsing
@@ -34,18 +39,16 @@ func main() {
 		}
 	}
 
-	// Get env variables
-	connString := os.Getenv("CONN_STRING")
-	port := os.Getenv("PORT")
-
-	// Connect to mongodb
 	var err error
-	nosql, err = mongodb.Connect(connString, "myDB")
+	temp, err = template.ParseFS(pages, "web/*.*")
 	if err != nil {
-		panic("mongodb connection: " + err.Error())
+		panic(err)
 	}
 
-	http.HandleFunc("/index", indexHandler)
+	port := os.Getenv("PORT")
+
+	http.HandleFunc("/", handler)
+	http.HandleFunc("/images/", imagesHandler)
 
 	http.ListenAndServe(":"+port, nil)
 }
