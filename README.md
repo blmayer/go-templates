@@ -16,9 +16,10 @@ Then you must change some things:
 ## Meta
 
 
-### Author
+### Authors
 
 Brian Mayer ([bleemayer@gmail.com](mailto:bleemayer@gmail.com))
+Arthur Durant ([arthur_sbd@hotmail.com](mailto:arthur_sbd@hotmail.com))
 
 
 ### License
