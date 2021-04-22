@@ -5,8 +5,6 @@ import (
 	"html/template"
 	"net/http"
 	"os"
-
-	"github.com/blmayer/go-templates/internal/database/mongodb"
 )
 
 const help = `template is a go program template
@@ -19,8 +17,7 @@ Examples:
   template --help`
 
 var (
-	nosql mongodb.Database
-	temp  *template.Template
+	temp *template.Template
 
 	//go:embed web/*
 	pages embed.FS
